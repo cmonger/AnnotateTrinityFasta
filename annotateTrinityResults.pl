@@ -1,4 +1,4 @@
-#!/usr/bin/perl
+#!/usr/bin/perl -s
 
 #Perl script to rename output of trinity with annotation from $TRINITY_HOME/util/analyze_blastPlus_topHit_coverage.pl (blastx.outfmt6.txt.w_pct_hit_length)
 
@@ -61,6 +61,16 @@ foreach (@Blast)
 	}
 
 #NEED TO LOOP THROUGH GENE SYMBOLS AND NUMBER ISOFORMS
+$geneDB = () ;
+foreach $transcript (keys %$blastResults)
+	{
+#	print $blastResults->{$transcript}->{"geneSymbol"}."\n" ;
+	$geneDB->{$blastResults->{$transcript}->{"geneSymbol"}}->{"count"}++ ;
+#	print $blastResults->{$transcript}->{"geneSymbol"}."\t".$geneDB->{$blastResults->{$transcript}->{"geneSymbol"}}->{"count"}."\n" ;
+	$blastResults->{$transcript}->{"isoform"} = $geneDB->{$blastResults->{$transcript}->{"geneSymbol"}}->{"count"} ;
+	}
+
+
 
 my $line ;
 
@@ -77,8 +87,9 @@ foreach (@Trinity)
 		$blastResults->{$1}->{"path"} = $3 ;
 		if (exists $blastResults->{$1}->{"geneSymbol"} )
 			{
-			print OUTFILE "\>".$blastResults->{$1}->{"geneSymbol"}."\thitOrg=".$blastResults->{$1}->{"hitOrg"}."\tpIdent=".$blastResults->{$1}->{"pIdent"}."\teValue=".$blastResults->{$1}->{"eValue"}."\tScore=".$blastResults->{$1}->{"score"}."\thitLength=".$blastResults->{$1}->{"hitLength"}."\thitCoverage=".$blastResults->{$1}->{"hitLengthPer"}."\tassemblyID=$1\tAssemblyLength=".$blastResults->{$1}->{"length"}."\tFunction=".$blastResults->{$1}->{"Annotation"}."\n"
+			print OUTFILE "\>".$blastResults->{$1}->{"geneSymbol"}." Isoform X".$blastResults->{$1}->{"isoform"}."\thitOrg=".$blastResults->{$1}->{"hitOrg"}."\tpIdent=".$blastResults->{$1}->{"pIdent"}."\teValue=".$blastResults->{$1}->{"eValue"}."\tScore=".$blastResults->{$1}->{"score"}."\thitLength=".$blastResults->{$1}->{"hitLength"}."\thitCoverage=".$blastResults->{$1}->{"hitLengthPer"}."\tassemblyID=$1\tAssemblyLength=".$blastResults->{$1}->{"length"}."\tFunction=".$blastResults->{$1}->{"Annotation"}."\n"
 			}
+
 		else {print "id $1 not in database \n"}
 
 		}
@@ -88,3 +99,4 @@ foreach (@Trinity)
 	}
 
 close OUTFILE ;
+
