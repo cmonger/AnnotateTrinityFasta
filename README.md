@@ -3,7 +3,7 @@
 Perl script to rename output of trinity with annotation from $TRINITY_HOME/util/analyze_blastPlus_topHit_coverage.pl (blastx.outfmt6.txt.w_pct_hit_length)
 
 #Usage:
- annotateTrinityResults.pl <<$RENAMEDFASTA>> <<$BLASTRESULTS>> <BR>
+ annotateTrinityResults.pl <<$RENAMEDFASTA>> <<$BLASTRESULTS>> <<$OUTPUTFILE>> <BR>
  e.g annotateTrinityResults.pl sirgTrinityBlx70lenE20.blout6.names.fa sirgTrinityBlx70lenE20.blout6  annotatedFastaFile.fa
 
 #Input files 
