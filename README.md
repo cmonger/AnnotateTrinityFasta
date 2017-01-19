@@ -10,7 +10,8 @@ Perl script to rename output of trinity with annotation from $TRINITY_HOME/util/
 the filtered by name output and the blastx with length results.
 
 #Input generation
-## Full length transcripts from blast
+
+##Full length transcripts from blast
         #blastx  -query sirgTrinity.fasta -db /mnt/work/database/uniprot_sprot.trinotate.pep -out blastFullLengthTranscripts.outfmt6 -evalue 1e-20 -num_threads 32 -max_target_seqs 1 -outfmt 6
 ##Run the length/tophit script from trintiy
         #/mnt/work/software/trinityrnaseq-Trinity-v2.3.2/util/analyze_blastPlus_topHit_coverage.pl blastFullLengthTranscripts.outfmt6 sirgTrinity.fasta /mnt/work/database/uniprot_sprot.trinotate.pep
