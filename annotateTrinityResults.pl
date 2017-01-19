@@ -63,6 +63,9 @@ foreach (@Blast)
 #NEED TO LOOP THROUGH GENE SYMBOLS AND NUMBER ISOFORMS
 
 my $line ;
+
+open OUTFILE, ">$output" or die;
+
 #Loop through the fasta file, if its header then append the annotation information
 foreach (@Trinity)
 	{
@@ -74,12 +77,14 @@ foreach (@Trinity)
 		$blastResults->{$1}->{"path"} = $3 ;
 		if (exists $blastResults->{$1}->{"geneSymbol"} )
 			{
-			print "\>".$blastResults->{$1}->{"geneSymbol"}."\thitOrg=".$blastResults->{$1}->{"hitOrg"}."\tpIdent=".$blastResults->{$1}->{"pIdent"}."\teValue=".$blastResults->{$1}->{"eValue"}."\tScore=".$blastResults->{$1}->{"score"}."\thitLength=".$blastResults->{$1}->{"hitLength"}."\thitCoverage=".$blastResults->{$1}->{"hitLengthPer"}."\tassemblyID=$1\tAssemblyLength=".$blastResults->{$1}->{"length"}."\tFunction=".$blastResults->{$1}->{"Annotation"}."\n"
+			print OUTFILE "\>".$blastResults->{$1}->{"geneSymbol"}."\thitOrg=".$blastResults->{$1}->{"hitOrg"}."\tpIdent=".$blastResults->{$1}->{"pIdent"}."\teValue=".$blastResults->{$1}->{"eValue"}."\tScore=".$blastResults->{$1}->{"score"}."\thitLength=".$blastResults->{$1}->{"hitLength"}."\thitCoverage=".$blastResults->{$1}->{"hitLengthPer"}."\tassemblyID=$1\tAssemblyLength=".$blastResults->{$1}->{"length"}."\tFunction=".$blastResults->{$1}->{"Annotation"}."\n"
 			}
 		else {print "id $1 not in database \n"}
 
 		}
 	#If not a faster header, print the sequence information
-	else {print "$line"}
+	else {print OUTFILE "$line"}
 	
 	}
+
+close OUTFILE ;
