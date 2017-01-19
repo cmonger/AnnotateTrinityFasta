@@ -24,7 +24,7 @@ the filtered by name output and the blastx with length results.
 
 
 # Example Output:
-\>SC61G  hitOrg=MOUSE    pIdent=80.00    eValue=2e-29    Score=109       hitLength=65    hitCoverage=95.59       assemblyID=TRINITY_DN627526_c0_g1_i1    AssemblyLength=len=534  Function=Protein transport protein Sec61 subunit gamma<BR>
+	#>SC61G  hitOrg=MOUSE    pIdent=80.00    eValue=2e-29    Score=109       hitLength=65    hitCoverage=95.59       assemblyID=TRINITY_DN627526_c0_g1_i1    AssemblyLength=len=534  Function=Protein transport protein Sec61 subunit gamma<BR>
 CAGAAGAGGGTGTTGAGTCCCCTGGAACTGGAATGACAGACAGTTGTGAGCCACCATGTAGATGCTGGGA<BR>
 ATGGAACCCAGGTCCTTTGAAAGAGCTGACAATGCTCCTAACCACTGAGCCATCTCTCCAGGTCCAGATC<BR>
 TAAGTTTTGATCACCAGAGGCCACATAAAAGCTAGGAGGAGCTGGCAACCCACTTGTAATTCCAGCCTCA<BR>
